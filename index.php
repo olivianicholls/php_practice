@@ -1,8 +1,8 @@
 <?php
-ini_set('display_errors', 'On');
 if (isset($_POST["submit"])) {
   $username = $_POST["username"];
   $password = $_POST["password"];
+  
   $connection = mysqli_connect("localhost", "root", "root", "loginapp");
   if ($connection) {
     echo "Connected";
@@ -32,14 +32,17 @@ if (isset($_POST["submit"])) {
       <h3>Description of stuff</h3>
       <div class="col-xs-4"></div>
       <div class="col-xs-4">
-        <form class="form-group" action="index.php" method="post">
+        <form action="index.php" method="post">
+		<div class="form-group">
           <label for="username">Username</label>
           <input class="form-control" type="text" name="username">
+		  </div>
+		  <div class="form-group">
           <label for="password">Password</label>
           <input class="form-control" type="password" name="password">
-          <br>
-          <input class="btn" type="submit" name="submit" value="Submit">
-          <a href="registration.php">Sign Up</a>
+          </div>
+          <input class="btn" type="submit" name="submit" value="SIGN IN">
+          <a href="registration.php">SIGN UP</a>
         </form>
       </div>
       <div class="col-xs-4"></div>
