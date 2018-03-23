@@ -1,12 +1,23 @@
-<?php include "db.php"
-  $query = "SELECT * FROM users";
-  $result = mysqli_query($connection, $query);
-  if (!$result) {
-    die("Query Failed: " . mysqli_error());
-  }
+<?php include "db.php";?>
+<?php include "functions.php";?>
+
+<?php
+if (isset($_POST['submit'])) {
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	$id = $_POST['id'];
+	
+	$query = "UPDATE users SET username = '$username' password = '$password' WHERE  id = '$id'";
+	
+	$result = mysqli_query($connection, $query);
+	
+	if (!$result) {
+		die("QUERY FAILED"); 
+	}
 }
 ?>
 
+<!DOCTYPE html>
 <html>
  <head lang="en">
    <meta charset="utf-8">
@@ -28,8 +39,10 @@
           </div>
 		  
 		  <div class="form-group">
-		  <select name="" id="">
-		  <option value="">1</option>
+		  <select name="id" id="">
+		  <?php
+		  showAllData();
+		  ?>		
 		  </div>
           <input class="btn" type="submit" name="submit" value="Submit">
           <a href="registration.php">Sign Up</a>
