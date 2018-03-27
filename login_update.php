@@ -1,32 +1,12 @@
 <?php include "db.php";?>
 <?php include "functions.php";?>
+<?php updateUser();?>
 
-<?php
-if (isset($_POST['submit'])) {
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$id = $_POST['id'];
-	
-	$query = "UPDATE users SET username = '$username' password = '$password' WHERE  id = '$id'";
-	
-	$result = mysqli_query($connection, $query);
-	
-	if (!$result) {
-		die("QUERY FAILED"); 
-	}
-}
-?>
-
-<!DOCTYPE html>
-<html>
- <head lang="en">
-   <meta charset="utf-8">
-   <title>Website</title>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-   <link rel="stylesheet" href="styles.css">
- </head>
- <body>
-  <div class="container"> 
+<?php include "includes/header.php."; ?>
+<div class="container">
+      <header class="jumbotron">
+        <h1>Update</h1>
+      </header>
     <div class="co l-xs-6">
 	<form action="index.php" method="post">
 		<div class="form-group">
@@ -37,8 +17,7 @@ if (isset($_POST['submit'])) {
           <label for="password">Password</label>
           <input class="form-control" type="password" name="password">
           </div>
-		  
-		  <div class="form-group">
+		<div class="form-group">
 		  <select name="id" id="">
 		  <?php
 		  showAllData();
@@ -49,5 +28,4 @@ if (isset($_POST['submit'])) {
         </form>
 	</div>
   </div>
- </body>
-</html>
+<?php include "includes/footer.php."; ?>
