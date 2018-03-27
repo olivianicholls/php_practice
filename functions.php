@@ -6,12 +6,10 @@ function createUser() {
 		$username = mysqli_real_escape_string($connection, $_POST["username"]);
 		$password = mysqli_real_escape_string($connection, $_POST["password"]);
 		$hashFormat = "$2y$10$";
-		$salt = "iusesomecrazysrings22";
+		$salt = "iusesomecrazystrings22";
 		$hashF_and_salt = $hashFormat . $salt;
-		
-		$password = crypt($password, $hashF_and_salt);
-		
-		  $query = "INSERT INTO users(username, password) VALUES ('$username', '$password')";
+		$passwordEncrypt = crypt($password, $hashF_and_salt);
+		$query = "INSERT INTO users(username, password) VALUES ('$username', '$passwordEncrypt')";
 		$result = mysqli_query($connection, $query);
 		if (!$result) {
 			die("Query Failed: " . mysqli_error());
@@ -23,6 +21,9 @@ function readTable() {
 	global $connection;
 	$query = "SELECT * FROM users";
 	$result = mysqli_query($connection, $query);
+	while ($row = mysqli_fetch_assoc($result)) {
+		print_r($query);
+	}
 	if (!$result) {
 		die("Query Failed: " . mysqli_error());
 	}
